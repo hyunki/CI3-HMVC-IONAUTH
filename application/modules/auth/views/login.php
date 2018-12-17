@@ -1,7 +1,7 @@
 <?php
     if ($this->ion_auth->logged_in())
     {
-      redirect('/');
+      redirect(base_url('auth'));
     }
 
 
@@ -34,3 +34,6 @@
 <?php echo form_close();?>
 
 <p><a href="forgot_password"><?php echo lang('login_forgot_password');?></a></p>
+
+<p>not a member? register</p>
+<a href="<?=base_url('auth/create_user ')?>">가입</a>

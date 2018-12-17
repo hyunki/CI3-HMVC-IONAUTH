@@ -276,12 +276,13 @@ class Ion_auth_model extends CI_Model
 
 		if ($this->store_salt && $salt)
 		{
-			return  sha1($password . $salt);
+			// return  sha1($password . $salt);
+			return  hash('sha256', $password . $salt);
 		}
 		else
 		{
 			$salt = $this->salt();
-			return  $salt . substr(sha1($salt . $password), 0, -$this->salt_length);
+			return  $salt . substr(hash('sha256', $salt . $password), 0, -$this->salt_length);
 		}
 	}
 
@@ -325,16 +326,17 @@ class Ion_auth_model extends CI_Model
 			return FALSE;
 		}
 
-		// sha1
+		// sha1 is obsolete
+		// use sha256
 		if ($this->store_salt)
 		{
-			$db_password = sha1($password . $hash_password_db->salt);
+			$db_password = hash('sha256', $password . $hash_password_db->salt);
 		}
 		else
 		{
 			$salt = substr($hash_password_db->password, 0, $this->salt_length);
 
-			$db_password =  $salt . substr(sha1($salt . $password), 0, -$this->salt_length);
+			$db_password =  $salt . substr(hash('sha256' , $salt . $password), 0, -$this->salt_length);
 		}
 
 		if($db_password == $hash_password_db->password)

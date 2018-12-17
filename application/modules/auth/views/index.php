@@ -1,9 +1,12 @@
+<a href="<?=base_url('auth/logout/') ?>">logout</a>
+
 <h1><?php echo lang('index_heading');?></h1>
+
 <p><?php echo lang('index_subheading');?></p>
 
 <div id="infoMessage"><?php echo $message;?></div>
 
-<table cellpadding=0 cellspacing=10>
+<table cellpadding=0  border="1px black">
 	<tr>
 		<th><?php echo lang('index_fname_th');?></th>
 		<th><?php echo lang('index_lname_th');?></th>
